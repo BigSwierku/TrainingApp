@@ -2,6 +2,7 @@ package com.example.user.Madcow
 
 import android.arch.persistence.room.*
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
+import io.reactivex.Flowable
 
 /**
  * Created by User on 2017-12-28.
@@ -19,9 +20,12 @@ import android.arch.persistence.room.OnConflictStrategy.REPLACE
     fun deleteTraining(training: Training)
 
     @Query ("select * from trainings where id = :id")
-    fun getTrainingById(id: Int): Training
+    fun getTrainingById(id: Int): Flowable<Training>
 
     @Query("select * from trainings where week =:week")
-    fun  getTrainingsForWeek(week: Int) : List<Training>
+    fun  getTrainingsForWeek(week: Int) : Flowable<List<Training>>
+
+    @Query ("select * from trainings")
+    fun getTrainings() : Flowable<List<Training>>
 
 }
