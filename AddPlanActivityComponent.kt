@@ -11,7 +11,8 @@ import dagger.multibindings.IntoMap
  * Created by User on 2018-01-09.
  */
 
-@Subcomponent interface AddPlanActivityComponent : AndroidInjector<AddPlanActivity> {
+@Subcomponent (modules = arrayOf(AddPlanActivityModule::class))
+interface AddPlanActivityComponent : AndroidInjector<AddPlanActivity> {
 
     @Subcomponent.Builder abstract class Builder : AndroidInjector.Builder<AddPlanActivity>()
 }

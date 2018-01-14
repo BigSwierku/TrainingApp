@@ -23,9 +23,9 @@ import io.reactivex.Flowable
     fun getTrainingById(id: Int): Flowable<Training>
 
     @Query("select * from trainings where week =:week")
-    fun  getTrainingsForWeek(week: Int) : Flowable<List<Training>>
+    fun  getTrainingsForWeek(week: Int) : Flowable<List<TrainingWithSeries>>
 
     @Query ("select * from trainings")
-    fun getTrainings() : Flowable<List<Training>>
+    fun getTrainings() : Flowable<List<TrainingWithSeries>>
 
 }

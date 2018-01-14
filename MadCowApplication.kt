@@ -14,7 +14,7 @@ import javax.inject.Inject
 //injecting activity injector into applicatiob
 class MadCowApplication: Application(), HasActivityInjector {
 
-    @Inject var  activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>? = null
+    @Inject lateinit var  activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()

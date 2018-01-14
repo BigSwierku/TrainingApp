@@ -8,5 +8,6 @@ import android.arch.persistence.room.Relation
  */
 
 class TrainingWithSeries(
-    @Embedded val training: Training,
-    @Relation(parentColumn = "id", entityColumn = "training_id") val  seriesList:List<Series>)
+    @Embedded var training: Training,
+    @Relation(parentColumn = "id", entityColumn = "training_id", entity = Series::class)
+    var  seriesList :List<Series> )

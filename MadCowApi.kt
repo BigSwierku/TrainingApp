@@ -7,12 +7,12 @@ import javax.inject.Inject
  * Created by User on 2018-01-10.
  */
 
-class MadCowApi @Inject constructor(val trainigDao: TrainingDao, val seriesDao: SeriesDao, val trainingWithSeriesDao: TrainingWithSeriesDao){
+class MadCowApi @Inject constructor(val trainigDao: TrainingDao, val seriesDao: SeriesDao){
 
 
 
 
-    fun getAllTrainigs(): Flowable<List<Training>> =  trainigDao.getTrainings()
+    fun getAllTrainigs(): Flowable<List<TrainingWithSeries>> =  trainigDao.getTrainings()
 
 
 }

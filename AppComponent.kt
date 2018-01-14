@@ -12,7 +12,7 @@ import dagger.BindsInstance
 
 //injecting modules into application class
 @Component(modules = arrayOf(AppModule::class,
-        MadCowActivityModule::class, AddPlanActivityModule::class,DataModule::class))
+        MadCowActivityModule::class, AddPlanActivityModule::class,DataModule::class, ActivityBuilder::class))
 interface AppComponent {
 
     @Component.Builder

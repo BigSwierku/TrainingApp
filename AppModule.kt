@@ -17,7 +17,8 @@ import javax.inject.Singleton
 class AppModule() {
 
     @Singleton
-    @Provides fun providesAppContext(application:Application) = application
+    @Provides
+    fun providesAppContext(application:MadCowApplication) = application
 
     @Singleton
     @Provides
@@ -26,7 +27,7 @@ class AppModule() {
 
 
     @Provides
-    fun providesApi(trainigDao: TrainingDao, seriesDao: SeriesDao,  trainingWithSeriesDao: TrainingWithSeriesDao) : MadCowApi = MadCowApi(trainigDao,seriesDao,trainingWithSeriesDao )
+    fun providesApi(trainigDao: TrainingDao, seriesDao: SeriesDao) : MadCowApi = MadCowApi(trainigDao,seriesDao )
 
 
 
