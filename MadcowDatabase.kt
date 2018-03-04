@@ -9,7 +9,7 @@ import android.arch.persistence.room.TypeConverters
  */
 
 //databes class
-@Database(entities= arrayOf(Series::class,Training::class,TrainingWithSeries::class),version = 1)
+@Database(entities= arrayOf(Series::class,Training::class),version = 1)
 @TypeConverters(Converters::class)
 abstract class MadcowDatabase:RoomDatabase(){
     abstract fun trainingDao(): TrainingDao

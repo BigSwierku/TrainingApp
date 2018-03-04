@@ -1,6 +1,7 @@
 package com.example.user.Madcow
 
 import android.arch.persistence.room.*
+import io.reactivex.Flowable
 
 /**
  * Created by User on 2018-01-02.
@@ -17,8 +18,9 @@ import android.arch.persistence.room.*
     fun deleteSeries(series: Series)
 
     @Query ("select * from series where id = :id")
-    fun getSeriesById(id: Int): Series
+    fun getSeriesById(id: Int): Flowable<Series>
 
-    //@Query ("select * from series where training_id=:")
+    @Query ("select * from series where training_id=:training_id")
+    fun getSeriesByTraining(training_id:Int): Flowable<List<Series>>
 }
 

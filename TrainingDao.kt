@@ -3,6 +3,7 @@ package com.example.user.Madcow
 import android.arch.persistence.room.*
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import io.reactivex.Flowable
+import java.nio.charset.CodingErrorAction.REPLACE
 
 /**
  * Created by User on 2017-12-28.
@@ -10,10 +11,10 @@ import io.reactivex.Flowable
 @Dao interface TrainingDao{
 
 
-    @Insert (onConflict = REPLACE)
+    @Insert //(onConflict = REPLACE)
     fun insertTraining(training: Training)
 
-    @Update(onConflict = REPLACE)
+    @Update//(onConflict = REPLACE)
     fun updateTrainig(training: Training)
 
     @Delete
@@ -23,9 +24,9 @@ import io.reactivex.Flowable
     fun getTrainingById(id: Int): Flowable<Training>
 
     @Query("select * from trainings where week =:week")
-    fun  getTrainingsForWeek(week: Int) : Flowable<List<TrainingWithSeries>>
+    fun  getTrainingsForWeek(week: Int) : Flowable<List<Training>>
 
     @Query ("select * from trainings")
-    fun getTrainings() : Flowable<List<TrainingWithSeries>>
+    fun getTrainings() : Flowable<List<Training>>
 
 }

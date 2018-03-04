@@ -11,6 +11,7 @@ import javax.inject.Inject
  * Created by User on 2018-01-08.
  */
 
+
 //injecting activity injector into applicatiob
 class MadCowApplication: Application(), HasActivityInjector {
 

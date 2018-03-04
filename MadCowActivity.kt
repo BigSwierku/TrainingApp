@@ -5,14 +5,18 @@ import android.os.Bundle
 import javax.inject.Inject
 import dagger.android.AndroidInjection
 
+
 //Activity showing plan
 class MadCowActivity : AppCompatActivity() {
 
     @Inject lateinit var madCowPresenter : MadCowPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AdroidInjection.inject(this)
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mad_cow)
+
+
+
     }
 }

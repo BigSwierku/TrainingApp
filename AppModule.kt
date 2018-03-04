@@ -5,6 +5,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import android.app.Application
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -16,18 +17,27 @@ import javax.inject.Singleton
 @Module
 class AppModule() {
 
-    @Singleton
+    //@Singleton
+   // @Provides
+   //fun providesApplication(application:MadCowApplication) = application
+
     @Provides
-    fun providesAppContext(application:MadCowApplication) = application
+    fun provideContext(application:Application): Context = application
+
+  //  @Singleton
+  //  @Provides
+  //  @Named("testDB")
+   // fun provideTestDB( context: Context): MadcowDatabase =
+      //      Room.inMemoryDatabaseBuilder(context, MadcowDatabase::class.java).allowMainThreadQueries().build()
 
     @Singleton
     @Provides
-    fun providesMadcow(context: Context): MadcowDatabase =
+    fun providesMadcow( context: Context): MadcowDatabase =
             Room.databaseBuilder(context, MadcowDatabase::class.java, "madcow_db").build()
 
+@Provides
+fun providesMadcowApi(database:MadcowDatabase):MadCowApi = MadCowApi(database)
 
-    @Provides
-    fun providesApi(trainigDao: TrainingDao, seriesDao: SeriesDao) : MadCowApi = MadCowApi(trainigDao,seriesDao )
 
 
 

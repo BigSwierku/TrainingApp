@@ -3,6 +3,9 @@ package com.example.user.Madcow
 import dagger.Component
 import android.app.Application
 import dagger.BindsInstance
+import javax.inject.Singleton
+import dagger.android.AndroidInjectionModule
+
 
 
 
@@ -11,14 +14,15 @@ import dagger.BindsInstance
  */
 
 //injecting modules into application class
-@Component(modules = arrayOf(AppModule::class,
-        MadCowActivityModule::class, AddPlanActivityModule::class,DataModule::class, ActivityBuilder::class))
+@Singleton
+@Component(modules = arrayOf(AppModule::class, AndroidInjectionModule::class,
+      ActivityBuilder::class))
 interface AppComponent {
 
     @Component.Builder
      interface Builder {
         @BindsInstance
-        fun application(application: MadCowApplication): Builder
+        fun application(application: Application): Builder
 
         fun build(): AppComponent
     }
