@@ -1,7 +1,9 @@
-package com.example.user.Madcow
+package com.example.user.Madcow.View
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.user.Madcow.ViewModel.MadCowPresenter
+import com.example.user.Madcow.R
 import javax.inject.Inject
 import dagger.android.AndroidInjection
 

@@ -1,4 +1,4 @@
-package com.example.user.Madcow
+package com.example.user.Madcow.Model
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -13,10 +13,10 @@ import android.arch.persistence.room.PrimaryKey
         childColumns = arrayOf("training_id"),
         onDelete = ForeignKey.CASCADE)))
 data class Series(
-        @PrimaryKey(autoGenerate = true) var id:Int,
+        @PrimaryKey(autoGenerate = true) var id:Int?=null,
         var excersise: String,
         var reps: Int,
         var weight:Double,
         var pause : Int,
-        @ColumnInfo(name = "training_id")var trainingId: Int
+        @ColumnInfo(name = "training_id")var trainingId: Int?
 )

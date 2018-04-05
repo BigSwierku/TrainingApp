@@ -1,9 +1,7 @@
-package com.example.user.Madcow
+package com.example.user.Madcow.Model
 
 import android.arch.persistence.room.*
-import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import io.reactivex.Flowable
-import java.nio.charset.CodingErrorAction.REPLACE
 
 /**
  * Created by User on 2017-12-28.

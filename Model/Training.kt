@@ -1,4 +1,4 @@
-package com.example.user.Madcow
+package com.example.user.Madcow.Model
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
@@ -8,7 +8,7 @@ import java.sql.Date
 
 @Entity(tableName = "trainings")
  data class Training(
-        @PrimaryKey(autoGenerate = true) var id: Int= 0,
+        @PrimaryKey(autoGenerate = true) var id: Int?=null,
         @ColumnInfo(name= "training_type") var type:Int,
         var date:Date,
         var week :Int

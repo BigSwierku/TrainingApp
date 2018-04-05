@@ -1,4 +1,4 @@
-package com.example.user.Madcow
+package com.example.user.Madcow.Model
 
 import android.arch.persistence.room.*
 import io.reactivex.Flowable

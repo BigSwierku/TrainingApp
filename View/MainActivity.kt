@@ -1,8 +1,9 @@
-package com.example.user.Madcow
+package com.example.user.Madcow.View
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.user.Madcow.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
