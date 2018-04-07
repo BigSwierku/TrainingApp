@@ -11,6 +11,9 @@ import io.reactivex.Flowable
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSeries(series: Series)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllSeries(seriesList: List<Series>)
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateSeries(series: Series)
 

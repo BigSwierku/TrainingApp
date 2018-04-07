@@ -10,6 +10,6 @@ import java.sql.Date
  data class Training(
         @PrimaryKey(autoGenerate = true) var id: Int?=null,
         @ColumnInfo(name= "training_type") var type:Int,
-        var date:Date,
+        var date:java.util.Date,
         var week :Int
 )
