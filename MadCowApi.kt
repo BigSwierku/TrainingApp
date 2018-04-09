@@ -19,44 +19,57 @@ import java.time.DayOfWeek
 /**
  * Created by User on 2018-01-10.
  */
-
+ enum class Trainig(dayOfWeek:String ) {
+    ListOf<"Bench", "Row","Squat">(MONDAY);
+}
 class MadCowApi @Inject constructor(val db: MadcowDatabase) {
-    val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+    private val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
     private lateinit   var  startMap : Map<String,Double>
     fun createPlan(maxMap : Map<String,Double>){
         startMap = maxMap.mapValues{ it.value-(it.value*0.2)}
         while (cal.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) cal.add(Calendar.DATE,1)
         for (i in 0..9){
-                addTrainig(1,i+1,cal.time)
+                addTrainig(cal.get(Calendar.DAY_OF_WEEK),i+1,cal.time)
                 cal.add(Calendar.DATE,2)
-                addTrainig(2,i+1,cal.time)
+                addTrainig(cal.get(Calendar.DAY_OF_WEEK),i+1,cal.time)
                 cal.add(Calendar.DATE,2)
-                addTrainig(3,i+1,cal.time)
+                addTrainig(cal.get(Calendar.DAY_OF_WEEK),i+1,cal.time)
                 cal.add(Calendar.DATE,3)
         }
     }
 
+    private fun getExercisePerDayOfWeek(dayOfWeek:Int):List<String>{
+        when(dayOfWeek){
+            Calendar.MONDAY-> return listOf<String>("Squat","Bench","Row")
+                Calendar.WEDNESDAY-> return  listOf<String>("Military","Bench","Row")
+            Calendar.FRIDAY->return listOf<String>("Squat","Bench","Row")
+            else ->throw throw IllegalArgumentException(" Wrong day of week for trainig!, please set monday, wednsday or friday")
+        }
+    }
 
     private fun addTrainig(type:Int,week:Int,data: Date){
 
         var id =db.trainingDao().insertTraining(Training(type=type,week=week,date=data))
-        addExcersise(startMap.get("Bench"),id,"Bench",type)
+        for (excersise in getExercisePerDayOfWeek(type)){
+            addExcersise(startMap.getValue(excersise),id,excersise,type)
+        }
     }
 
     private fun  addExcersise(wokrWeight:Double, training_id:Int, excersise:String,training_type:Int){
     val listOfSeries :MutableList<Series> = mutableListOf()
         when(training_type) {
-            1 ->for (i in 1..5) {
-                listOfSeries.add(Series(excersise = excersise,
-                        reps=5,//shared.getRepsForDayOfWeek(training.date))
-                        weight = (wokrWeight.minus(((5 - i) * 0.125) * wokrWeight)),
-                        pause=120,
-                        trainingId = training_id))
-            }
+            1 -> for (i in 1..5) {
+                        listOfSeries.add(Series(excersise = excersise,
+                                reps = 5,//shared.getRepsForDayOfWeek(training.date))
+                                weight = (wokrWeight - (((5 - i) * 0.125) * wokrWeight)),
+                                pause = 120,
+                                trainingId = training_id))
+                    }
+
             2 -> for (i in 2..5) {
                 listOfSeries.add(Series(excersise = excersise,
                         reps=5,//shared.getRepsForDayOfWeek(training.date))
-                        weight = (wokrWeight.minus(((5 - i) * 0.125) * wokrWeight)),
+                        weight = (wokrWeight -(((5 - i) * 0.125) * wokrWeight)),
                         pause=120,
                         trainingId = training_id))
             }
@@ -64,7 +77,7 @@ class MadCowApi @Inject constructor(val db: MadcowDatabase) {
                 for (i in 1..4) {
                     listOfSeries.add(Series(excersise = excersise,
                             reps = 5,//shared.getRepsForDayOfWeek(training.date))
-                            weight = (wokrWeight.minus(((5 - i) * 0.125) * wokrWeight)),
+                            weight = (wokrWeight -(((5 - i) * 0.125) * wokrWeight)),
                             pause = 120,
                             trainingId = training_id))
                 }
@@ -75,7 +88,7 @@ class MadCowApi @Inject constructor(val db: MadcowDatabase) {
                         trainingId = training_id))
                 listOfSeries.add(Series(excersise = excersise,
                         reps = 8,//shared.getRepsForDayOfWeek(training.date))
-                        weight = (wokrWeight.minus( 0.25 * wokrWeight)),
+                        weight = (wokrWeight - ( 0.25 * wokrWeight)),
                         pause = 120,
                         trainingId = training_id))
             }
