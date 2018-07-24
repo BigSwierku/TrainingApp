@@ -2,6 +2,7 @@ package com.example.user.Madcow.Model
 
 import android.arch.persistence.room.*
 import io.reactivex.Flowable
+import org.intellij.lang.annotations.Flow
 import java.util.*
 
 /**
@@ -11,7 +12,10 @@ import java.util.*
 
 
     @Insert //(onConflict = REPLACE)
-    fun insertTraining(training: Training): Int
+    fun insertTraining(training: Training)
+
+    @Insert //(onConflict = REPLACE)
+    fun insertTrainings(trainings: List<Training>)
 
     @Update//(onConflict = REPLACE)
     fun updateTrainig(training: Training)
@@ -22,13 +26,14 @@ import java.util.*
     @Query ("select * from trainings where id = :id")
     fun getTrainingById(id: Int): Flowable<Training>
 
-    @Query("select * from trainings where week =:week")
-    fun  getTrainingsForWeek(week: Int) : Flowable<List<Training>>
 
     @Query("select * from trainings where date=:date")
     fun getTrainingForDate(date: Date): Flowable<Training>
 
     @Query ("select * from trainings")
-    fun getTrainings() : Flowable<List<Training>>
+    fun getTrainings() : Flowable<Training>
+
+    @Query ("select * from trainings where week =:week")
+    fun getTrainingsForWeek(week:Int) : Flowable<Training>
 
 }
