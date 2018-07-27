@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.week_item.view.*
 /**
  * Created by User on 2018-06-20.
  */
-class PlanAdapter(val items: List<Training>) : RecyclerView.Adapter<PlanAdapter.ViewHolder>() {
+class WeeksAdapter(val items: List<Training>, val clickListener: (Training) -> Unit) : RecyclerView.Adapter<WeeksAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -21,6 +21,8 @@ class PlanAdapter(val items: List<Training>) : RecyclerView.Adapter<PlanAdapter.
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.weekNumberText.text = items[position].week.toString()
         holder.weekDatesText.text = items[position].date.toString()
+        holder.nextButton.setOnClickListener { clickListener(items[position])}
+
 
 //        holder.weekItemDate.text = items.get(position).week.toString()
 //        holder.weekItemWeek.text = items.get(position).date.toString()
@@ -35,7 +37,7 @@ class PlanAdapter(val items: List<Training>) : RecyclerView.Adapter<PlanAdapter.
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val weekNumberText = view.week_number
         val weekDatesText = view.week_dates
-
+        val nextButton = view.show_week
 
     }
 

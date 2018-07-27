@@ -4,10 +4,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.example.user.Madcow.Adapters.PlanAdapter
+import com.example.user.Madcow.Adapters.WeeksAdapter
 import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
-import com.example.user.Madcow.ViewModel.PlanViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -32,7 +31,7 @@ class ShowSeriesActivity : AppCompatActivity(){
 
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = PlanAdapter(seriesList)
+        viewAdapter = WeeksAdapter(seriesList)
 
         recyclerView = findViewById<RecyclerView>(R.id.series_recycler_view).apply {
 

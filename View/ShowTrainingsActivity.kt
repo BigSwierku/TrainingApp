@@ -1,14 +1,14 @@
 package com.example.user.Madcow.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.example.user.Madcow.Adapters.PlanAdapter
+import com.example.user.Madcow.Adapters.TrainingsAdapter
 
 import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
-import com.example.user.Madcow.ViewModel.PlanViewModel
 
 import javax.inject.Inject
 
@@ -27,14 +27,13 @@ class ShowTrainingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.training_list)
 
-
-        trainingViewModel..doOnNext {
+        val firstTrainingOfWeek = intent.getStringExtra("trainingId")
+        trainingViewModel.getTrainigsForWeek(firstTrainingOfWeek).doOnNext {
             trainingList.add(it)
             viewAdapter.notifyDataSetChanged() }
 
-
-        viewManager = LinearLayoutManager(this)
-        viewAdapter = PlanAdapter(trainingList)
+                viewManager = LinearLayoutManager(this)
+        viewAdapter = TrainingsAdapter(trainingList){ training : Training -> showTraining(training)}
 
         recyclerView = findViewById<RecyclerView>(R.id.training_recycler_view).apply {
 
@@ -47,6 +46,13 @@ class ShowTrainingsActivity : AppCompatActivity() {
             adapter = viewAdapter
 
         }
+
+    }
+
+    private fun showTraining(training : Training) {
+        val intent = Intent(this@ShowTrainingsActivity, ShowExercisesActivity::class.java);
+        intent.putExtra("trainingId", training.id)
+        startActivity(intent)
 
     }
 }

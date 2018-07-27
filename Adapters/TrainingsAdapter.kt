@@ -4,10 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.user.Madcow.Model.Series
+import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
 import com.example.user.Madcow.getMainExcersizeForTrainig
-import kotlinx.android.synthetic.main.excersize_item.view.*
 import kotlinx.android.synthetic.main.trainig_item.view.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -15,16 +14,18 @@ import java.util.*
 /**
  * Created by User on 2018-06-30.
  */
+class TrainingsAdapter(val items: List<Training>, val clickListener: (Training) -> Unit) : RecyclerView.Adapter<TrainingsAdapter.ViewHolder>() {
 
-class TrainingAdapter(val items: List<Series>) : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.excersize_item, parent, false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.trainig_item, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.exercise.text = items[position].excersise
-        holder.reps.text = items[position].reps.toString()
+        holder.weekDay.text = SimpleDateFormat("EEEE", Locale.ENGLISH).format(items[position].date.time)
+        holder.mainExcercise.text = items[position].getMainExcersizeForTrainig()
+        holder.nextButton.setOnClickListener { clickListener(items[position])}
+
     }
 
     override fun getItemCount(): Int {
@@ -33,8 +34,9 @@ class TrainingAdapter(val items: List<Series>) : RecyclerView.Adapter<TrainingAd
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val exercise = view.excersice_name
-        val reps = view.series_amount
+        val weekDay = view.week_day
+        val mainExcercise = view.main_excercise
+        val nextButton = view.show_training
 
     }
 }

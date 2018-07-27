@@ -1,11 +1,12 @@
 package com.example.user.Madcow.View
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.user.Madcow.Model.Training
-import com.example.user.Madcow.Adapters.PlanAdapter
+import com.example.user.Madcow.Adapters.WeeksAdapter
 
 import com.example.user.Madcow.R
 import com.example.user.Madcow.ViewModel.PlanViewModel
@@ -34,7 +35,7 @@ class ShowWeeksActivity : AppCompatActivity() {
 
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = PlanAdapter(weeksList)
+        viewAdapter = WeeksAdapter(weeksList) { training : Training -> showWeek(training)}
 
         recyclerView = findViewById<RecyclerView>(R.id.week_recycler_view).apply {
 
@@ -47,6 +48,12 @@ class ShowWeeksActivity : AppCompatActivity() {
             adapter = viewAdapter
 
         }
+
+    }
+    private fun showWeek(training : Training) {
+        val intent = Intent(this@ShowWeeksActivity, ShowTrainingsActivity::class.java);
+        intent.putExtra("trainingId", training.id)
+        startActivity(intent)
 
     }
 }
