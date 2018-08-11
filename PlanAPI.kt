@@ -39,9 +39,9 @@ private lateinit var  planCreator:PlanCreator
 
    // fun getTrainigById(trainingId : Int):Single<Training> = db.trainingDao().getTrainingById(trainingId)
 
-    fun getSeriesForTrainig(trainingId : Int):Flowable<List<Series>> = db.seriesDao().getSeriesByTraining(trainingId)
+    fun getSeriesForTrainig(trainingId : Int):Flowable<Series> = db.seriesDao().getSeriesByTraining(trainingId)
 
-    //fun getSeriesById(seriesId : Int): Single<Series> = db.seriesDao().getSeriesById(seriesId)
+    fun getSeriesById(seriesId : Int): Single<Series> = db.seriesDao().getSeriesById(seriesId)
 
     fun getTrainigsForWeek(week:Int):Flowable<Training> = db.trainingDao().getTrainingsForWeek(week)
 

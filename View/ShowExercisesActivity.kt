@@ -1,23 +1,27 @@
 package com.example.user.Madcow.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.example.user.Madcow.Adapters.ExercisesAdapter
 import com.example.user.Madcow.Adapters.WeeksAdapter
+import com.example.user.Madcow.Model.Series
 import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
+import com.example.user.Madcow.ViewModel.ExercisesViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
 class ShowExercisesActivity: AppCompatActivity(){
 
     @Inject
-    lateinit var exerciseViewModel : ExerciseViewModel
+    lateinit var exerciseViewModel : ExercisesViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var seriesList: MutableList<Training>
+    private lateinit var seriesList: MutableList<Series>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -31,7 +35,7 @@ class ShowExercisesActivity: AppCompatActivity(){
 
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = WeeksAdapter(seriesList)
+        viewAdapter = ExercisesAdapter(seriesList){series:Series -> showExercise((series))}
 
         recyclerView = findViewById<RecyclerView>(R.id.exercise_recycler_view).apply {
 
@@ -44,6 +48,14 @@ class ShowExercisesActivity: AppCompatActivity(){
             adapter = viewAdapter
 
         }
+
+    }
+
+
+    private fun showExercise(series : Series) {
+        val intent = Intent(this@ShowExercisesActivity, ShowSeriesActivity::class.java)
+        intent.putExtra("exerciseName", series.excersise)
+        startActivity(intent)
 
     }
 }

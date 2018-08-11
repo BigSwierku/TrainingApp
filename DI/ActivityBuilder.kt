@@ -13,8 +13,8 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = arrayOf(MadCowActivityModule::class))
-    internal abstract fun bindMadCowActivity(): ShowWeeksActivity
+    @ContributesAndroidInjector(modules = arrayOf(ShowWeeksActivityModule::class))
+    internal abstract fun bindShowWeeksActivity(): ShowWeeksActivity
 
     @ContributesAndroidInjector(modules = arrayOf(AddPlanActivityModule::class))
     internal abstract fun bindAddPlanActivity(): AddPlanActivity

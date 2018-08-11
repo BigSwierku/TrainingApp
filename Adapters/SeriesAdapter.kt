@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.series_item.view.*
 /**
  * Created by User on 2018-06-30.
  */
-class SeriesAdapter(val items: List<Series>) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
+class SeriesAdapter(val items: List<Series>,val clickListener: (Series) -> Unit) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

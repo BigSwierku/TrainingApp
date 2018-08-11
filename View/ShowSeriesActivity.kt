@@ -1,12 +1,16 @@
 package com.example.user.Madcow.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.example.user.Madcow.Adapters.SeriesAdapter
 import com.example.user.Madcow.Adapters.WeeksAdapter
+import com.example.user.Madcow.Model.Series
 import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
+import com.example.user.Madcow.ViewModel.SeriesViewModel
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -31,7 +35,7 @@ class ShowSeriesActivity : AppCompatActivity(){
 
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = WeeksAdapter(seriesList)
+        viewAdapter = SeriesAdapter(seriesList,)
 
         recyclerView = findViewById<RecyclerView>(R.id.series_recycler_view).apply {
 
@@ -44,6 +48,12 @@ class ShowSeriesActivity : AppCompatActivity(){
             adapter = viewAdapter
 
         }
+
+    }
+    private fun startSeries(series : Series) {
+        val intent = Intent(this@ShowSeriesActivity, TimerActivity::class.java)
+        intent.putExtra("pauseTime", series.pause)
+        startActivity(intent)
 
     }
 }

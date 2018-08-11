@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by User on 2018-05-03.
  */
-class WeekViewModel@Inject constructor(private val planApi: PlanAPI){
+class WeeksViewModel@Inject constructor(private val planApi: PlanAPI){
 
 
     fun getTrainigsForWeek(week : Int):Flowable<Training> {

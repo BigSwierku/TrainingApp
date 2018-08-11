@@ -9,6 +9,7 @@ import com.example.user.Madcow.Adapters.TrainingsAdapter
 
 import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
+import com.example.user.Madcow.ViewModel.TrainingsViewModel
 
 import javax.inject.Inject
 
@@ -16,7 +17,7 @@ import dagger.android.AndroidInjection
 
 class ShowTrainingsActivity : AppCompatActivity() {
 
-    @Inject lateinit var trainingViewModel : TrainingViewModel
+    @Inject lateinit var trainingsViewModel : TrainingsViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -28,7 +29,7 @@ class ShowTrainingsActivity : AppCompatActivity() {
         setContentView(R.layout.training_list)
 
         val firstTrainingOfWeek = intent.getStringExtra("trainingId")
-        trainingViewModel.getTrainigsForWeek(firstTrainingOfWeek).doOnNext {
+        trainingsViewModel.getTrainigsForWeek(firstTrainingOfWeek).doOnNext {
             trainingList.add(it)
             viewAdapter.notifyDataSetChanged() }
 

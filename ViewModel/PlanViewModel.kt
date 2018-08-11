@@ -16,13 +16,9 @@ import java.util.*
  */
 class PlanViewModel @Inject constructor(private val planApi: PlanAPI)  {
     fun getPlanHarmonogram():Flowable<Training>{
-//       val mondayTrainigs= planApi.getTrainigs().filter { it -> it.date.day == Calendar.MONDAY}
-//               .flatMap { listTrainig -> Flowable.fromIterable(listTrainig)
-//               .filter{it -> it.date.day == Calendar.MONDAY}}.toList().toFlowable()
 
-
-
-        return planApi.getTrainigs().filter { it.date.day == Calendar.MONDAY }
+        return planApi.getTrainigs()
+                .filter { it.date.day == Calendar.MONDAY }
                 .sorted { training1, training2 ->  training1.week - training2.week}
    }
 

@@ -7,8 +7,8 @@ import dagger.android.AndroidInjector
 /**
  * Created by User on 2018-01-09.
  */
-@Subcomponent(modules = arrayOf(MadCowActivityModule::class))
-interface MadCowActivityComponent : AndroidInjector<ShowWeeksActivity> {
+@Subcomponent(modules = arrayOf(ShowWeeksActivityModule::class))
+interface ShowWeeksActivityComponent : AndroidInjector<ShowWeeksActivity> {
 
     @Subcomponent.Builder abstract class Builder : AndroidInjector.Builder<ShowWeeksActivity>()
 }

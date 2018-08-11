@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.excersize_item.view.*
  * Created by User on 2018-06-30.
  */
 
-class ExercisesAdapter(val items: List<Series>, val clickListener: (Training) -> Unit) : RecyclerView.Adapter<ExercisesAdapter.ViewHolder>() {
+class ExercisesAdapter(val items: List<Series>, val clickListener: (Series) -> Unit) : RecyclerView.Adapter<ExercisesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.excersize_item, parent, false))

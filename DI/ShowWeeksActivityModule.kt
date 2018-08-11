@@ -3,6 +3,7 @@ package com.example.user.Madcow.DI
 import com.example.user.Madcow.PlanAPI
 
 import com.example.user.Madcow.ViewModel.PlanViewModel
+import com.example.user.Madcow.ViewModel.WeeksViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -13,10 +14,10 @@ import dagger.Provides
 
 //activity stuff - dagger2.10
 @Module
-abstract  class MadCowActivityModule {
+abstract  class ShowWeeksActivityModule {
 
 
 
     @Provides
-     fun  providePlanViewModel(planApi: PlanAPI) = PlanViewModel(planApi)
+     fun  provideWeeksViewModel(planApi: PlanAPI) = WeeksViewModel(planApi)
 }

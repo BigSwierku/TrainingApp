@@ -2,6 +2,7 @@ package com.example.user.Madcow.Model
 
 import android.arch.persistence.room.*
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 /**
  * Created by User on 2018-01-02.
@@ -21,9 +22,9 @@ import io.reactivex.Flowable
     fun deleteSeries(series: Series)
 
     @Query ("select * from series where id = :id")
-    fun getSeriesById(id: Int?): Flowable<Series>
+    fun getSeriesById(id: Int?): Single<Series>
 
     @Query ("select * from series where training_id=:training_id")
-    fun getSeriesByTraining(training_id:Int?): Flowable<List<Series>>
+    fun getSeriesByTraining(training_id:Int?): Flowable<Series>
 }
 
