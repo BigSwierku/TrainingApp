@@ -9,11 +9,14 @@ import com.example.user.Madcow.Adapters.TrainingsAdapter
 
 import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
+import com.example.user.Madcow.ViewModel.ExercisesViewModel
 import com.example.user.Madcow.ViewModel.TrainingsViewModel
 
 import javax.inject.Inject
 
 import dagger.android.AndroidInjection
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class ShowTrainingsActivity : AppCompatActivity() {
 
@@ -28,10 +31,10 @@ class ShowTrainingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.training_list)
 
-        val firstTrainingOfWeek = intent.getStringExtra("trainingId")
-        trainingsViewModel.getTrainigsForWeek(firstTrainingOfWeek).doOnNext {
+        val firstTrainingOfWeek = intent.getStringExtra("trainingId").toInt()
+            trainingsViewModel.getTrainigsForWeek(firstTrainingOfWeek).subscribeOn(Schedulers.io()).doOnNext {
             trainingList.add(it)
-            viewAdapter.notifyDataSetChanged() }
+            viewAdapter.notifyDataSetChanged() }.observeOn(AndroidSchedulers.mainThread())
 
                 viewManager = LinearLayoutManager(this)
         viewAdapter = TrainingsAdapter(trainingList){ training : Training -> showTraining(training)}

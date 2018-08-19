@@ -12,6 +12,9 @@ import com.example.user.Madcow.R
 import com.example.user.Madcow.ViewModel.PlanViewModel
 import javax.inject.Inject
 import dagger.android.AndroidInjection
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+
 
 
 //Activity showing plan
@@ -29,9 +32,9 @@ class ShowWeeksActivity : AppCompatActivity() {
         setContentView(R.layout.week_list)
 
 
-       planViewModel.getPlanHarmonogram().doOnNext {
+       planViewModel.getPlanHarmonogram().subscribeOn(Schedulers.io()). doOnNext {
            weeksList.add(it)
-           viewAdapter.notifyDataSetChanged() }
+           viewAdapter.notifyDataSetChanged() }.observeOn(AndroidSchedulers.mainThread())
 
 
         viewManager = LinearLayoutManager(this)

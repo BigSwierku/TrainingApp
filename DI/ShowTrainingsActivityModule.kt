@@ -1,7 +1,7 @@
 package com.example.user.Madcow.DI
 
 import com.example.user.Madcow.PlanAPI
-import com.example.user.Madcow.ViewModel.TrainingsViewModel
+import com.example.user.Madcow.ViewModel.ExercisesViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -11,5 +11,5 @@ abstract  class ShowTrainingsActivityModule {
 
 
     @Provides
-    fun  provideTrainingsViewModel(planApi: PlanAPI) = TrainingsViewModel(planApi)
+    fun  provideTrainingsViewModel(planApi: PlanAPI) = ExercisesViewModel(planApi)
 }

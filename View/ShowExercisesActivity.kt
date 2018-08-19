@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.user.Madcow.Adapters.ExercisesAdapter
-import com.example.user.Madcow.Adapters.WeeksAdapter
 import com.example.user.Madcow.Model.Series
-import com.example.user.Madcow.Model.Training
 import com.example.user.Madcow.R
 import com.example.user.Madcow.ViewModel.ExercisesViewModel
+import com.example.user.Madcow.ViewModel.SeriesViewModel
 import dagger.android.AndroidInjection
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ShowExercisesActivity: AppCompatActivity(){
@@ -28,10 +29,10 @@ class ShowExercisesActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.excersize_list)
 
-
-        exerciseViewModel..doOnNext {
+        val choosenTraining = intent.getStringExtra("trainingId").toInt()
+        exerciseViewModel.getExcersisesForTrainig(choosenTraining).subscribeOn(Schedulers.io()) .doOnNext {
             seriesList.add(it)
-            viewAdapter.notifyDataSetChanged() }
+            viewAdapter.notifyDataSetChanged() }.observeOn(AndroidSchedulers.mainThread())
 
 
         viewManager = LinearLayoutManager(this)
@@ -55,6 +56,7 @@ class ShowExercisesActivity: AppCompatActivity(){
     private fun showExercise(series : Series) {
         val intent = Intent(this@ShowExercisesActivity, ShowSeriesActivity::class.java)
         intent.putExtra("exerciseName", series.excersise)
+        intent.putExtra("trainigId",series.trainingId )
         startActivity(intent)
 
     }
