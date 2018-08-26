@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**
  * Created by User on 2018-02-15.
  */
-class PlanAPI @Inject constructor(val db: MadcowDatabase) {
+  class PlanAPI @Inject constructor(val db: MadcowDatabase) {
 
 private lateinit var  planCreator:PlanCreator
 

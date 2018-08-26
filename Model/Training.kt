@@ -3,7 +3,7 @@ package com.example.user.Madcow.Model
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import java.util.*
+import java.util.Date
 
 
 @Entity(tableName = "trainings")

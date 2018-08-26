@@ -24,17 +24,12 @@ class ShowWeeksActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var weeksList: MutableList<Training>
+    private  var weeksList: MutableList<Training> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.week_list)
-
-
-       planViewModel.getPlanHarmonogram().subscribeOn(Schedulers.io()). doOnNext {
-           weeksList.add(it)
-           viewAdapter.notifyDataSetChanged() }.observeOn(AndroidSchedulers.mainThread())
 
 
         viewManager = LinearLayoutManager(this)
@@ -51,6 +46,10 @@ class ShowWeeksActivity : AppCompatActivity() {
             adapter = viewAdapter
 
         }
+
+        planViewModel.getPlanHarmonogram().subscribe  {
+            weeksList.add(it)
+            viewAdapter.notifyDataSetChanged() }
 
     }
     private fun showWeek(training : Training) {

@@ -26,37 +26,37 @@ class AddPlanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add_plan)
 
 
-        val  chestWeightEditText = RxTextView.textChanges(chestWeight).subscribe{
-            if(chestWeight.text.toString().isNotEmpty() && chestReps.text.toString().isNotEmpty())
-            addPlanViewModel.calcMax(chestWeight.text.toString(),chestReps.text.toString()).subscribe({it->benchMaxView.text= it.toString()})
+        val chestWeightEditText = RxTextView.textChanges(chestWeight).subscribe {
+            if (chestWeight.text.toString().isNotEmpty() && chestReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(chestWeight.text.toString(), chestReps.text.toString()).subscribe({ it -> benchMaxView.text = it.toString() })
         }
-        val  deadliftWeightEditText =  RxTextView.textChanges(deadWeight).subscribe{
-            if(deadWeight.text.toString().isNotEmpty() && deadReps.text.toString().isNotEmpty())
-            addPlanViewModel.calcMax(deadWeight.text.toString(),deadReps.text.toString()).subscribe({it->deadliftMaxView.text= it.toString()})
+        val deadliftWeightEditText = RxTextView.textChanges(deadWeight).subscribe {
+            if (deadWeight.text.toString().isNotEmpty() && deadReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(deadWeight.text.toString(), deadReps.text.toString()).subscribe({ it -> deadliftMaxView.text = it.toString() })
         }
-        val  squatWeightEditText =  RxTextView.textChanges(squatWeight).subscribe{
-            if(squatWeight.text.toString().isNotEmpty() && squatReps.text.toString().isNotEmpty())
-            addPlanViewModel.calcMax(squatWeight.text.toString(),squatReps.text.toString()).subscribe({it->squatMaxView.text= it.toString()})
+        val squatWeightEditText = RxTextView.textChanges(squatWeight).subscribe {
+            if (squatWeight.text.toString().isNotEmpty() && squatReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(squatWeight.text.toString(), squatReps.text.toString()).subscribe({ it -> squatMaxView.text = it.toString() })
         }
-        val  militaryWeightEditText =  RxTextView.textChanges(militaryWeight).subscribe{
-            if(militaryWeight.text.toString().isNotEmpty() && militaryReps.text.toString().isNotEmpty())
-            addPlanViewModel.calcMax(militaryWeight.text.toString(),militaryReps.text.toString()).subscribe({it->militaryMaxView.text= it.toString()})
+        val militaryWeightEditText = RxTextView.textChanges(militaryWeight).subscribe {
+            if (militaryWeight.text.toString().isNotEmpty() && militaryReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(militaryWeight.text.toString(), militaryReps.text.toString()).subscribe({ it -> militaryMaxView.text = it.toString() })
         }
-        val  chestRepsEditText = RxTextView.textChanges(chestReps).subscribe{
-            if(chestWeight.text.toString().isNotEmpty() && chestReps.text.toString().isNotEmpty())
-                addPlanViewModel.calcMax(chestWeight.text.toString(),chestReps.text.toString()).subscribe({it->benchMaxView.text= it.toString()})
+        val chestRepsEditText = RxTextView.textChanges(chestReps).subscribe {
+            if (chestWeight.text.toString().isNotEmpty() && chestReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(chestWeight.text.toString(), chestReps.text.toString()).subscribe({ it -> benchMaxView.text = it.toString() })
         }
-        val  deadliftRepsEditText =  RxTextView.textChanges(deadReps).subscribe{
-            if(deadWeight.text.toString().isNotEmpty() && deadReps.text.toString().isNotEmpty())
-                addPlanViewModel.calcMax(deadWeight.text.toString(),deadReps.text.toString()).subscribe({it->deadliftMaxView.text= it.toString()})
+        val deadliftRepsEditText = RxTextView.textChanges(deadReps).subscribe {
+            if (deadWeight.text.toString().isNotEmpty() && deadReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(deadWeight.text.toString(), deadReps.text.toString()).subscribe({ it -> deadliftMaxView.text = it.toString() })
         }
-        val  squatRepsEditText =  RxTextView.textChanges(squatReps).subscribe{
-            if(squatWeight.text.toString().isNotEmpty() && squatReps.text.toString().isNotEmpty())
-                addPlanViewModel.calcMax(squatWeight.text.toString(),squatReps.text.toString()).subscribe({it->squatMaxView.text= it.toString()})
+        val squatRepsEditText = RxTextView.textChanges(squatReps).subscribe {
+            if (squatWeight.text.toString().isNotEmpty() && squatReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(squatWeight.text.toString(), squatReps.text.toString()).subscribe({ it -> squatMaxView.text = it.toString() })
         }
-        val  militaryRepsEditText =  RxTextView.textChanges(militaryReps).subscribe{
-            if(militaryWeight.text.toString().isNotEmpty() && militaryReps.text.toString().isNotEmpty())
-                addPlanViewModel.calcMax(militaryWeight.text.toString(),militaryReps.text.toString()).subscribe({it->militaryMaxView.text= it.toString()})
+        val militaryRepsEditText = RxTextView.textChanges(militaryReps).subscribe {
+            if (militaryWeight.text.toString().isNotEmpty() && militaryReps.text.toString().isNotEmpty())
+                addPlanViewModel.calcMax(militaryWeight.text.toString(), militaryReps.text.toString()).subscribe({ it -> militaryMaxView.text = it.toString() })
         }
 
         createPlanButton.setOnClickListener {
@@ -64,10 +64,14 @@ class AddPlanActivity : AppCompatActivity() {
                     "Deadlift" to deadliftMaxView.toDouble(),
                     "Squat" to squatMaxView.toDouble(),
                     "Military" to militaryMaxView.toDouble())
-//            addPlanViewModel.setMaxes(maxesMap)
-            addPlanViewModel.generatePlan(1).doOnSuccess {   startActivity(Intent(this, AddPlanActivity::class.java))}
+            addPlanViewModel.setMaxes(maxesMap)
+            addPlanViewModel.generatePlan(1).subscribeOn(Schedulers.newThread())
+                    .doOnSuccess {   startActivity(Intent(this, ShowWeeksActivity::class.java)) }
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
 
         }
     }
+    }
 
-}
+

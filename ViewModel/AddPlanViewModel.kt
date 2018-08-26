@@ -21,10 +21,9 @@ class AddPlanViewModel @Inject constructor(private val planAPI: PlanAPI) {
     fun setMaxes(maxes:Map<String,Double>){UserProperities.instance.workingMaxWeights=maxes}
 
     fun generatePlan(planType:Int):Single<Boolean>{
-         Single.fromCallable {
-        planAPI.createPlan(planType)}.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe()
-        return Single.just(true)
+      return   Single.fromCallable {
+        planAPI.createPlan(planType)}}
+
     }
 
 
@@ -33,4 +32,3 @@ class AddPlanViewModel @Inject constructor(private val planAPI: PlanAPI) {
 
 
 
-}
