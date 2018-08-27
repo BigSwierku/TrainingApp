@@ -10,7 +10,7 @@ import javax.inject.Inject
 /**
  * Created by User on 2018-05-03.
  */
-class ExercisesViewModel@Inject constructor(private val planApi: PlanAPI) {
+class ExercisesViewModel @Inject constructor(private val planApi: PlanAPI) {
 
 
     fun getExcersisesForTrainig(trainigId : Int)=planApi.getSeriesForTrainig(trainigId).distinct { it.excersise }
