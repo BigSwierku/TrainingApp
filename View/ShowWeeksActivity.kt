@@ -13,6 +13,7 @@ import com.example.user.Madcow.ViewModel.PlanViewModel
 import javax.inject.Inject
 import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 
@@ -25,15 +26,19 @@ class ShowWeeksActivity : AppCompatActivity() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private  var weeksList: MutableList<Training> = mutableListOf()
+    private lateinit var compositeDisposable : CompositeDisposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.week_list)
+        compositeDisposable = CompositeDisposable()
+
+
 
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = WeeksAdapter(weeksList) { training : Training -> showWeek(training)}
+        viewAdapter = WeeksAdapter(weeksList) { training: Training -> showWeek(training) }
 
         recyclerView = findViewById<RecyclerView>(R.id.week_recycler_view).apply {
 
@@ -46,16 +51,30 @@ class ShowWeeksActivity : AppCompatActivity() {
             adapter = viewAdapter
 
         }
+        compositeDisposable.add(
+                planViewModel.getPlanHarmonogram()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext {
+                            weeksList.add(it)
+                            viewAdapter.notifyDataSetChanged() }
+                        .subscribe())
 
-        planViewModel.getPlanHarmonogram().subscribe  {
-            weeksList.add(it)
-            viewAdapter.notifyDataSetChanged() }
+
+
 
     }
+
+
     private fun showWeek(training : Training) {
         val intent = Intent(this@ShowWeeksActivity, ShowTrainingsActivity::class.java);
-        intent.putExtra("trainingId", training.id)
+        intent.putExtra("weekOfCycle", training.week.toString())
         startActivity(intent)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

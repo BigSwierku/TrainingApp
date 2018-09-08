@@ -22,9 +22,9 @@ import io.reactivex.Single
     fun deleteSeries(series: Series)
 
     @Query ("select * from series where id = :id")
-    fun getSeriesById(id: Int?): Single<Series>
+    fun getSeriesById(id: Int?): Flowable<Series>
 
     @Query ("select * from series where training_id=:training_id")
-    fun getSeriesByTraining(training_id:Int?): Flowable<Series>
+    fun getSeriesByTraining(training_id:Int?): Flowable<List<Series>>
 }
 

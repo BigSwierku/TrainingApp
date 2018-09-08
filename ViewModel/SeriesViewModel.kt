@@ -9,7 +9,7 @@ import javax.inject.Inject
 class SeriesViewModel@Inject constructor(private val planApi: PlanAPI) {
 
 
-    fun getSeriesForExercise(trainigId : Int, exerciseName : String) = planApi.getSeriesForTrainig(trainigId).filter { it.excersise == exerciseName }
+    fun getSeriesForExercise(trainigId : Int, exerciseName : String) = planApi.getSeriesForTrainig(trainigId)//.filter { it.excersise.equals(exerciseName) }
 
     }
 

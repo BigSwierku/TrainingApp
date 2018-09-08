@@ -48,3 +48,4 @@ fun Training.getMainExcersizeForTrainig():String{
     }
 
 }
+fun Double.roundToThirdPlace() = Math.round(this * 1000.0) / 1000.0

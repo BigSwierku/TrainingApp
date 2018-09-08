@@ -24,9 +24,6 @@ class WeeksAdapter(val items: List<Training>, val clickListener: (Training) -> U
         holder.nextButton.setOnClickListener { clickListener(items[position])}
 
 
-//        holder.weekItemDate.text = items.get(position).week.toString()
-//        holder.weekItemWeek.text = items.get(position).date.toString()
-
     }
 
     override fun getItemCount(): Int {

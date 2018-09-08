@@ -16,6 +16,7 @@ import javax.inject.Inject
 
 import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class ShowTrainingsActivity : AppCompatActivity() {
@@ -24,19 +25,20 @@ class ShowTrainingsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var trainingList: MutableList<Training>
+    private  var trainingList: MutableList<Training> = mutableListOf()
+    private lateinit var compositeDisposable : CompositeDisposable
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.training_list)
 
-        val firstTrainingOfWeek = intent.getStringExtra("trainingId").toInt()
-            trainingsViewModel.getTrainigsForWeek(firstTrainingOfWeek).subscribeOn(Schedulers.io()).doOnNext {
-            trainingList.add(it)
-            viewAdapter.notifyDataSetChanged() }.observeOn(AndroidSchedulers.mainThread())
+        val firstTrainingOfWeek = intent.getStringExtra("weekOfCycle").toInt()
+        compositeDisposable = CompositeDisposable()
 
-                viewManager = LinearLayoutManager(this)
+
+        viewManager = LinearLayoutManager(this)
         viewAdapter = TrainingsAdapter(trainingList){ training : Training -> showTraining(training)}
 
         recyclerView = findViewById<RecyclerView>(R.id.training_recycler_view).apply {
@@ -51,13 +53,30 @@ class ShowTrainingsActivity : AppCompatActivity() {
 
         }
 
+
+        compositeDisposable.add(
+                trainingsViewModel.getTrainigsForWeek(firstTrainingOfWeek)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext {
+                    trainingList.add(it)
+                    viewAdapter.notifyDataSetChanged()}
+                .subscribe())
+
     }
+
+
 
     private fun showTraining(training : Training) {
         val intent = Intent(this@ShowTrainingsActivity, ShowExercisesActivity::class.java);
-        intent.putExtra("trainingId", training.id)
+        intent.putExtra("trainingId", training.id.toString())
         startActivity(intent)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }
 

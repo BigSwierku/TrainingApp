@@ -12,7 +12,7 @@ import java.util.*
 
 
     @Insert //(onConflict = REPLACE)
-    fun insertTraining(training: Training)
+    fun insertTraining (training: Training) :Long
 
     @Insert //(onConflict = REPLACE)
     fun insertTrainings(trainings: List<Training>)
@@ -31,9 +31,9 @@ import java.util.*
     fun getTrainingForDate(date: Date): Flowable<Training>
 
     @Query ("select * from trainings")
-    fun getTrainings() : Flowable<Training>
+    fun getTrainings() : Flowable<List<Training>>
 
     @Query ("select * from trainings where week =:week")
-    fun getTrainingsForWeek(week:Int) : Flowable<Training>
+    fun getTrainingsForWeek(week:Int) : Flowable<List<Training>>
 
 }

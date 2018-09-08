@@ -1,7 +1,6 @@
 package com.example.user.Madcow.DI
 
-import com.example.user.Madcow.View.AddPlanActivity
-import com.example.user.Madcow.View.ShowWeeksActivity
+import com.example.user.Madcow.View.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -18,5 +17,15 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = arrayOf(AddPlanActivityModule::class))
     internal abstract fun bindAddPlanActivity(): AddPlanActivity
+
+    @ContributesAndroidInjector(modules = arrayOf(ShowTrainingsActivityModule::class))
+    internal abstract fun bindShowTrainingsActivity(): ShowTrainingsActivity
+
+    @ContributesAndroidInjector(modules = arrayOf(ShowExercisesActivityModule::class))
+    internal abstract fun bindShowExerciseActivity(): ShowExercisesActivity
+
+
+    @ContributesAndroidInjector(modules = arrayOf(ShowSeriesActivityModule::class))
+    internal abstract fun bindShowSeriesActivity(): ShowSeriesActivity
 
 }

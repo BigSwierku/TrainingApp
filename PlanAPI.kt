@@ -23,7 +23,10 @@ private lateinit var  planCreator:PlanCreator
 
     private fun addTrainings(){
         var trainigHarmonogram = planCreator.createTrainigsHarmonogram()
-        db.trainingDao().insertTrainings(trainigHarmonogram)
+        for (training in trainigHarmonogram ){ training.id = db.trainingDao().insertTraining(training).toInt()
+
+        }
+       // db.trainingDao().insertTrainings(trainigHarmonogram)
         insertSeriesForTrainigs(trainigHarmonogram)
     }
     private fun insertSeriesForTrainigs(trainigList:List<Training> ){
@@ -33,17 +36,16 @@ private lateinit var  planCreator:PlanCreator
         }
     }
 
-    fun getTrainigs(): Flowable<Training> = db.trainingDao().getTrainings()
-
+    fun getTrainigs(): Flowable<Training> = db.trainingDao().getTrainings().flatMap{ Flowable.fromIterable(it)}
     //fun getTrainigForDate(trainingDate : Date):Single<Training> = db.trainingDao().getTrainingForDate(trainingDate)
 
    // fun getTrainigById(trainingId : Int):Single<Training> = db.trainingDao().getTrainingById(trainingId)
 
-    fun getSeriesForTrainig(trainingId : Int):Flowable<Series> = db.seriesDao().getSeriesByTraining(trainingId)
+    fun getSeriesForTrainig(trainingId : Int):Flowable<Series> = db.seriesDao().getSeriesByTraining(trainingId).flatMap{ Flowable.fromIterable(it)}
 
-    fun getSeriesById(seriesId : Int): Single<Series> = db.seriesDao().getSeriesById(seriesId)
+    fun getSeriesById(seriesId : Int): Flowable<Series> = db.seriesDao().getSeriesById(seriesId)
 
-    fun getTrainigsForWeek(week:Int):Flowable<Training> = db.trainingDao().getTrainingsForWeek(week)
+    fun getTrainigsForWeek(week:Int):Flowable<Training> = db.trainingDao().getTrainingsForWeek(week).flatMap{ Flowable.fromIterable(it)}
 
 
 

@@ -22,6 +22,7 @@ class ExercisesAdapter(val items: List<Series>, val clickListener: (Series) -> U
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.exercise.text = items[position].excersise
         holder.reps.text = items[position].reps.toString()
+        holder.showSeries.setOnClickListener { clickListener(items[position]) }
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +33,7 @@ class ExercisesAdapter(val items: List<Series>, val clickListener: (Series) -> U
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val exercise = view.excersice_name
         val reps = view.series_amount
+        val showSeries = view.show_series_button
 
     }
 }

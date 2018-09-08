@@ -12,6 +12,7 @@ import com.example.user.Madcow.ViewModel.ExercisesViewModel
 import com.example.user.Madcow.ViewModel.SeriesViewModel
 import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -22,7 +23,8 @@ class ShowExercisesActivity: AppCompatActivity(){
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var seriesList: MutableList<Series>
+    private  var seriesList: MutableList<Series> = mutableListOf()
+    private lateinit var compositeDisposable : CompositeDisposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -30,9 +32,8 @@ class ShowExercisesActivity: AppCompatActivity(){
         setContentView(R.layout.excersize_list)
 
         val choosenTraining = intent.getStringExtra("trainingId").toInt()
-        exerciseViewModel.getExcersisesForTrainig(choosenTraining).subscribeOn(Schedulers.io()) .doOnNext {
-            seriesList.add(it)
-            viewAdapter.notifyDataSetChanged() }.observeOn(AndroidSchedulers.mainThread())
+        compositeDisposable = CompositeDisposable()
+
 
 
         viewManager = LinearLayoutManager(this)
@@ -50,8 +51,14 @@ class ShowExercisesActivity: AppCompatActivity(){
 
         }
 
+        compositeDisposable.add(exerciseViewModel.getExcersisesForTrainig(choosenTraining)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext {
+                    seriesList.add(it)
+                    viewAdapter.notifyDataSetChanged()}
+                .subscribe())
     }
-
 
     private fun showExercise(series : Series) {
         val intent = Intent(this@ShowExercisesActivity, ShowSeriesActivity::class.java)
@@ -59,5 +66,10 @@ class ShowExercisesActivity: AppCompatActivity(){
         intent.putExtra("trainigId",series.trainingId )
         startActivity(intent)
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }
