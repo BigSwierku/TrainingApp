@@ -63,7 +63,7 @@ class ShowExercisesActivity: AppCompatActivity(){
     private fun showExercise(series : Series) {
         val intent = Intent(this@ShowExercisesActivity, ShowSeriesActivity::class.java)
         intent.putExtra("exerciseName", series.excersise)
-        intent.putExtra("trainigId",series.trainingId )
+        intent.putExtra("trainingId",series.trainingId )
         startActivity(intent)
 
     }

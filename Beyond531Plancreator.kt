@@ -58,7 +58,7 @@ class Beyond531Plancreator() :PlanCreator() {
                 for (i in 1..5) {
                     seriesInExcersise.add(Series(excersise = excersiseList[1],
                             reps = 3,//shared.getRepsForDayOfWeek(training.date))
-                            weight = (0.9 * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[0]))).roundToThirdPlace(),
+                            weight = (0.9 * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[1]))).roundToThirdPlace(),
                             pause = 120,
                             trainingId = training.id))
                 }
@@ -103,14 +103,16 @@ class Beyond531Plancreator() :PlanCreator() {
     }
     private fun getExercisesPerDayOfWeek(): List<String> {
         when (cal.get(Calendar.DAY_OF_WEEK)) {
-            Calendar.MONDAY, Calendar.THURSDAY -> return listOf("Squat", "Deadlift")
-            Calendar.TUESDAY, Calendar.FRIDAY -> return listOf("Military", "Bench")
+            Calendar.MONDAY -> return listOf("Squat", "Deadlift")
+            Calendar.TUESDAY -> return listOf("Bench","Military")
+            Calendar.THURSDAY -> return listOf("Deadlift","Squat")
+            Calendar.FRIDAY -> return listOf("Military", "Bench")
             else -> throw  IllegalArgumentException(" Wrong day of week for trainig ${Calendar.DAY_OF_WEEK}! , please set monday, wednsday or friday")
         }
     }
     private fun increaseWeightifNecessary(){
         if((cal.get(Calendar.WEEK_OF_YEAR) - startingWeek ) ==4)
-        UserProperities.instance.workingMaxWeights.values.plus(2.5)
+        UserProperities.instance.maxWeights.values.plus(2.5)
     }
 
 

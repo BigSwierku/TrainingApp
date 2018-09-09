@@ -18,7 +18,8 @@ class AddPlanViewModel @Inject constructor(private val planAPI: PlanAPI) {
 
         return Single.just(weight.toDouble() / (1.0278 - 0.0278 * reps.toDouble()))
     }
-    fun setMaxes(maxes:Map<String,Double>){UserProperities.instance.workingMaxWeights=maxes}
+    fun setMaxes(maxes:Map<String,Double>){
+        UserProperities.instance.maxWeights = maxes}
 
     fun generatePlan(planType:Int):Single<Boolean>{
       return   Single.fromCallable {

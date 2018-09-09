@@ -20,11 +20,11 @@ class PlanViewModel @Inject constructor(private val planApi: PlanAPI) {
     fun getPlanHarmonogram(): Flowable<Training> {
 
         return planApi.getTrainigs()
-        //         .filter { it.date.day ==  Calendar.SUNDAY }
-        //      .sorted  { training1, training2 ->  training1.week - training2.week}}
-
+                .filter { it.date.day == Calendar.MONDAY }
+        //.sorted  { training1, training2 ->  training1.week - training2.week}}
     }
-}
+    }
+
 
 
 

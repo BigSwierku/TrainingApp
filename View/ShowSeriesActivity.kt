@@ -33,7 +33,7 @@ class ShowSeriesActivity : AppCompatActivity(){
         setContentView(R.layout.series_list)
 
         val exerciseName = intent.getStringExtra("exerciseName")
-        val trainingId = intent.getIntExtra("trainingId",1)
+        val trainingId = intent.getIntExtra("trainingId",0)
 
         compositeDisposable = CompositeDisposable()
         viewManager = LinearLayoutManager(this)
