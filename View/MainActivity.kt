@@ -12,8 +12,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button.setOnClickListener { startActivity(Intent(this, AddPlanActivity::class.java)) }
-
+        add_new_plan.setOnClickListener { startActivity(Intent(this, AddPlanActivity::class.java)) }
+        check_existing_plan.setOnClickListener { startActivity(Intent(this, ShowWeeksActivity::class.java)) }
+        show_today_training.setOnClickListener {  }
 
     }
 }

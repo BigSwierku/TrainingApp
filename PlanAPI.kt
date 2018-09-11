@@ -37,7 +37,7 @@ private lateinit var  planCreator:PlanCreator
     }
 
     fun getTrainigs(): Flowable<Training> = db.trainingDao().getTrainings().flatMap{ Flowable.fromIterable(it)}
-    //fun getTrainigForDate(trainingDate : Date):Single<Training> = db.trainingDao().getTrainingForDate(trainingDate)
+    fun getTrainigForDate(trainingDate : Date):Single<Training> = db.trainingDao().getTrainingForDate(trainingDate)
 
    // fun getTrainigById(trainingId : Int):Single<Training> = db.trainingDao().getTrainingById(trainingId)
 
