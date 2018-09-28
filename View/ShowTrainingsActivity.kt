@@ -44,11 +44,7 @@ class ShowTrainingsActivity : AppCompatActivity() {
         recyclerView = findViewById<RecyclerView>(R.id.training_recycler_view).apply {
 
             setHasFixedSize(true)
-
-            // use a linear layout manager
             layoutManager = viewManager
-
-            // specify an viewAdapter (see also next example)
             adapter = viewAdapter
 
         }

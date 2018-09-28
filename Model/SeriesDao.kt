@@ -16,13 +16,13 @@ import io.reactivex.Single
     fun insertAllSeries(seriesList: List<Series>)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateSeries(series: Series)
+    fun updateSeries(series: Series):Int
 
     @Delete
     fun deleteSeries(series: Series)
 
     @Query ("select * from series where id = :id")
-    fun getSeriesById(id: Int?): Flowable<Series>
+    fun getSeriesById(id: Int?): Single<Series>
 
     @Query ("select * from series where training_id=:training_id")
     fun getSeriesByTraining(training_id:Int?): Flowable<List<Series>>

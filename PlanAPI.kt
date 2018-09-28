@@ -4,6 +4,7 @@ import com.example.user.Madcow.Model.MadcowDatabase
 import com.example.user.Madcow.Model.Series
 import com.example.user.Madcow.Model.Training
 import io.reactivex.Flowable
+import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
@@ -37,16 +38,20 @@ private lateinit var  planCreator:PlanCreator
     }
 
     fun getTrainigs(): Flowable<Training> = db.trainingDao().getTrainings().flatMap{ Flowable.fromIterable(it)}
-    fun getTrainigForDate(trainingDate : Date):Single<Training> = db.trainingDao().getTrainingForDate(trainingDate)
+
+    fun getTrainingForDate(trainingDate : Date): Maybe<Training> = db.trainingDao().getTrainingForDate(trainingDate)
 
    // fun getTrainigById(trainingId : Int):Single<Training> = db.trainingDao().getTrainingById(trainingId)
 
     fun getSeriesForTrainig(trainingId : Int):Flowable<Series> = db.seriesDao().getSeriesByTraining(trainingId).flatMap{ Flowable.fromIterable(it)}
 
-    fun getSeriesById(seriesId : Int): Flowable<Series> = db.seriesDao().getSeriesById(seriesId)
+    fun getSeriesById(seriesId : Int): Single<Series> = db.seriesDao().getSeriesById(seriesId)
 
     fun getTrainigsForWeek(week:Int):Flowable<Training> = db.trainingDao().getTrainingsForWeek(week).flatMap{ Flowable.fromIterable(it)}
 
+    fun getAnyTrainig():Single<Training> =db.trainingDao().getAnyTrainig()
+
+    fun updateSeries(series : Series): Single<Int> = Single.just(db.seriesDao().updateSeries(series))
 
 
 }

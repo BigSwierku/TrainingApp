@@ -71,7 +71,7 @@ class ShowWeeksActivity : AppCompatActivity() {
         intent.putExtra("weekOfCycle", training.week.toString())
         startActivity(intent)
 
-    }
+        }
 
     override fun onDestroy() {
         super.onDestroy()

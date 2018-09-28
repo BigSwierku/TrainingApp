@@ -2,6 +2,7 @@ package com.example.user.Madcow.Model
 
 import android.arch.persistence.room.*
 import io.reactivex.Flowable
+import io.reactivex.Maybe
 import io.reactivex.Single
 import org.intellij.lang.annotations.Flow
 import java.util.*
@@ -29,12 +30,15 @@ import java.util.*
 
 
     @Query("select * from trainings where date=:date")
-    fun getTrainingForDate(date: Date): Single<Training>
+    fun getTrainingForDate(date: Date): Maybe<Training>
 
     @Query ("select * from trainings")
     fun getTrainings() : Flowable<List<Training>>
 
     @Query ("select * from trainings where week =:week")
     fun getTrainingsForWeek(week:Int) : Flowable<List<Training>>
+
+    @Query("SELECT * FROM trainings LIMIT 1")
+    fun getAnyTrainig(): Single<Training>
 
 }

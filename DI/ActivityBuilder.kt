@@ -24,8 +24,13 @@ abstract class ActivityBuilder {
     @ContributesAndroidInjector(modules = arrayOf(ShowExercisesActivityModule::class))
     internal abstract fun bindShowExerciseActivity(): ShowExercisesActivity
 
-
     @ContributesAndroidInjector(modules = arrayOf(ShowSeriesActivityModule::class))
     internal abstract fun bindShowSeriesActivity(): ShowSeriesActivity
+
+    @ContributesAndroidInjector(modules = arrayOf(MainActivityModule::class))
+    internal abstract fun bindMainActivity(): MainActivity
+
+    @ContributesAndroidInjector(modules = arrayOf(TimerActivityModule::class))
+    internal abstract fun bindTimerActivity(): TimerActivity
 
 }
