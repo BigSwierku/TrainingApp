@@ -54,12 +54,17 @@ class ShowSeriesActivity : AppCompatActivity(){
 
     private fun startSeries(series : Series) {
         val intent = Intent(this@ShowSeriesActivity, TimerActivity::class.java)
-        intent.putExtra("pauseTime", series.pause)
+        intent.putExtra("seriesId", series.id.toString())
         startActivity(intent)
     }
 
+    override fun onPause(){
+        super.onPause()
+        seriesList.clear()
+    }
     override fun onDestroy() {
         super.onDestroy()
         compositeDisposable.clear()
+        seriesList.clear()
     }
 }

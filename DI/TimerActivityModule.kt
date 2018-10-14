@@ -8,7 +8,10 @@ import dagger.Provides
 @Module
 abstract  class TimerActivityModule {
 
-
-    @Provides
-    fun  provideTimerViewModel(planApi: PlanAPI) = TimerViewModel(planApi)
+    @Module
+    companion object {
+        @JvmStatic
+        @Provides
+        fun provideTimerViewModel(planApi: PlanAPI) = TimerViewModel(planApi)
+    }
 }

@@ -26,5 +26,9 @@ import io.reactivex.Single
 
     @Query ("select * from series where training_id=:training_id")
     fun getSeriesByTraining(training_id:Int?): Flowable<List<Series>>
+
+    @Query("update series set done_flag = :value where id = :id ")
+    fun setDoneFlag(id: Int?,value :Boolean =true): Int
+
 }
 

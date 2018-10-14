@@ -21,6 +21,8 @@ class SeriesAdapter(val items: List<Series>,val clickListener: (Series) -> Unit)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.reps.text = items[position].reps.toString()
         holder.weight.text = items[position].weight.toString()
+        holder.doneFlag.text = items[position].doneFlag.toString()
+        holder.start_series.setOnClickListener { clickListener(items[position]) }
     }
 
     override fun getItemCount(): Int {
@@ -32,6 +34,7 @@ class SeriesAdapter(val items: List<Series>,val clickListener: (Series) -> Unit)
         val reps = view.reps_amount
         val weight = view.weight
         val doneFlag = view.done_flag
+        val start_series = view.start_series
 
     }
 }

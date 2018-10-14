@@ -3,9 +3,11 @@ package com.example.user.Madcow
 import com.example.user.Madcow.Model.MadcowDatabase
 import com.example.user.Madcow.Model.Series
 import com.example.user.Madcow.Model.Training
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
@@ -51,7 +53,7 @@ private lateinit var  planCreator:PlanCreator
 
     fun getAnyTrainig():Single<Training> =db.trainingDao().getAnyTrainig()
 
-    fun updateSeries(series : Series): Single<Int> = Single.just(db.seriesDao().updateSeries(series))
+    fun updateSeries(series : Series):Int  = db.seriesDao().updateSeries(series)
 
 
 }

@@ -18,6 +18,6 @@ data class Series(
         var reps: Int,
         var weight:Double,
         var pause : Int,
-        var doneFlag : Boolean = false,
+        @ColumnInfo(name = "done_flag")var doneFlag : Boolean = false,
         @ColumnInfo(name = "training_id")var trainingId: Int?
 )
