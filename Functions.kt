@@ -1,7 +1,11 @@
 package com.example.user.Madcow
 
+import android.support.annotation.LayoutRes
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import com.example.user.Madcow.Model.Training
@@ -49,3 +53,8 @@ fun Training.getMainExcersizeForTrainig():String{
 
 }
 fun Double.roundToThirdPlace() = Math.round(this * 1000.0) / 1000.0
+
+
+fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
+    return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
+}

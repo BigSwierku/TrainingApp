@@ -23,7 +23,7 @@ class Beyond531Plancreator() :PlanCreator() {
    }
 
     private fun createCycle():MutableList<Training>{
-         var  trainigHarmonogram : MutableList<Training> = mutableListOf()
+         val  trainigHarmonogram : MutableList<Training> = mutableListOf()
         for (i in 0..23) {
             trainigHarmonogram.add(Training(date = cal.getTime(),week = cal.get(Calendar.WEEK_OF_YEAR) - startingWeek ) )
             moveDateToNextTrainig()
@@ -54,7 +54,9 @@ class Beyond531Plancreator() :PlanCreator() {
                             weight = ((0.6 + (i* 0.1)) * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[0]) )).roundToThirdPlace(),
                             pause = 120,
                             trainingId = training.id))
+
                 }
+                seriesInExcersise.last().amrapFlag=true
                 for (i in 1..5) {
                     seriesInExcersise.add(Series(excersise = excersiseList[1],
                             reps = 3,//shared.getRepsForDayOfWeek(training.date))
@@ -72,6 +74,7 @@ class Beyond531Plancreator() :PlanCreator() {
                             pause = 120,
                             trainingId = training.id))
                 }
+                seriesInExcersise.last().amrapFlag=true
                 for (i in 1..5) {
                     seriesInExcersise.add(Series(excersise = excersiseList[1],
                             reps = 5,//shared.getRepsForDayOfWeek(training.date))
@@ -80,7 +83,6 @@ class Beyond531Plancreator() :PlanCreator() {
                             trainingId = training.id))
                 }
             }
-
             3,6->{
                 for (i in 5 downTo 1 step 2) {
                 seriesInExcersise.add(Series(excersise = excersiseList[0],
@@ -89,6 +91,7 @@ class Beyond531Plancreator() :PlanCreator() {
                         pause = 120,
                         trainingId = training.id))
             }
+                seriesInExcersise.last().amrapFlag=true
                 for (i in 1..5) {
                     seriesInExcersise.add(Series(excersise = excersiseList[1],
                             reps = 3,//shared.getRepsForDayOfWeek(training.date))
@@ -114,6 +117,8 @@ class Beyond531Plancreator() :PlanCreator() {
         if((cal.get(Calendar.WEEK_OF_YEAR) - startingWeek ) ==4)
         UserProperities.instance.maxWeights.values.plus(2.5)
     }
+
+
 
 
 }

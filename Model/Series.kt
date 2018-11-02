@@ -19,5 +19,7 @@ data class Series(
         var weight:Double,
         var pause : Int,
         @ColumnInfo(name = "done_flag")var doneFlag : Boolean = false,
-        @ColumnInfo(name = "training_id")var trainingId: Int?
+        @ColumnInfo(name = "training_id")var trainingId: Int?,
+        @ColumnInfo(name = "amrap_flag")var amrapFlag : Boolean = false
+
 )

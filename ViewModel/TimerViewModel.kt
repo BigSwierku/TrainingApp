@@ -10,5 +10,5 @@ import javax.inject.Inject
 class TimerViewModel @Inject constructor(private val planApi: PlanAPI) {
 
     fun getSeriesById(seriesId : Int): Single<Series> = planApi.getSeriesById(seriesId)
-    fun markSeriesAsDone(series : Series): Int = planApi.updateSeries(series)
+    fun updateSeries(series : Series): Int = planApi.updateSeries(series)
 }
