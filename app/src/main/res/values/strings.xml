@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Madcow</string>
+    <string name="add_plan">Dodaj nowy Plan</string>
+    <string name="chest">Wyciskanie</string>
+    <string name="row">Wiosłowanie</string>
+    <string name="deadlift">Martwy ciąg</string>
+    <string name="squat">Przysiad</string>
+    <string name="military">Żołnierskie</string>
+    <string name="max_weight">Ciężar</string>
+    <string name="max_reps">Powtórzenia</string>
+    <string name="excercise">ćwiczenia</string>
+    <string name="adding_plan_desc">Wpisz poniżej ciężar i ilość powtórzeń</string>
+    <string name="create_program">Utwórz program</string>
+    <string name="check_existing">Wyświetl obecny plan</string>
+    <string name="show_today">Pokaż dzisiejszy trening</string>
+</resources>
