@@ -51,7 +51,7 @@ class Beyond531Plancreator() :PlanCreator() {
                 for (i in 1..3) {
                     seriesInExcersise.add(Series(excersise = excersiseList[0],
                             reps = 3,
-                            weight = ((0.6 + (i* 0.1)) * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[0]) )).roundToThirdPlace(),
+                            weight = ((0.6 + (i* 0.1)) * (UserProperities.getWorkingWeights()[excersiseList[0]]?:0.0)).roundToThirdPlace(),
                             pause = 120,
                             trainingId = training.id))
 
@@ -60,7 +60,7 @@ class Beyond531Plancreator() :PlanCreator() {
                 for (i in 1..5) {
                     seriesInExcersise.add(Series(excersise = excersiseList[1],
                             reps = 3,//shared.getRepsForDayOfWeek(training.date))
-                            weight = (0.9 * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[1]))).roundToThirdPlace(),
+                            weight = (0.9 * (UserProperities.getWorkingWeights()[excersiseList[1]]?:0.0)).roundToThirdPlace(),
                             pause = 120,
                             trainingId = training.id))
                 }
@@ -70,7 +70,7 @@ class Beyond531Plancreator() :PlanCreator() {
                 for (i in 1..3) {
                     seriesInExcersise.add(Series(excersise = excersiseList[0],
                             reps = 5,
-                            weight = ((0.55 + (i*0.1)) * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[0]))).roundToThirdPlace(),
+                            weight = ((0.55 + (i*0.1)) * (UserProperities.getWorkingWeights()[excersiseList[0]]?:0.0)).roundToThirdPlace(),
                             pause = 120,
                             trainingId = training.id))
                 }
@@ -78,7 +78,7 @@ class Beyond531Plancreator() :PlanCreator() {
                 for (i in 1..5) {
                     seriesInExcersise.add(Series(excersise = excersiseList[1],
                             reps = 5,//shared.getRepsForDayOfWeek(training.date))
-                            weight = (0.8 * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[1]))).roundToThirdPlace(),
+                            weight = (0.8 * (UserProperities.getWorkingWeights()[excersiseList[1]]?:0.0)).roundToThirdPlace(),
                             pause = 120,
                             trainingId = training.id))
                 }
@@ -87,7 +87,7 @@ class Beyond531Plancreator() :PlanCreator() {
                 for (i in 5 downTo 1 step 2) {
                 seriesInExcersise.add(Series(excersise = excersiseList[0],
                         reps = i,
-                        weight = ((1.0 - (i*0.05)) * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[0]))).roundToThirdPlace(),
+                        weight = ((1.0 - (i*0.05)) * (UserProperities.getWorkingWeights()[excersiseList[0]]?:0.0)).roundToThirdPlace(),
                         pause = 120,
                         trainingId = training.id))
             }
@@ -95,7 +95,7 @@ class Beyond531Plancreator() :PlanCreator() {
                 for (i in 1..5) {
                     seriesInExcersise.add(Series(excersise = excersiseList[1],
                             reps = 3,//shared.getRepsForDayOfWeek(training.date))
-                            weight = (0.9 * (UserProperities.instance.workingMaxWeights.getValue(excersiseList[1]))).roundToThirdPlace(),
+                            weight = (0.9 * (UserProperities.getWorkingWeights()[excersiseList[1]]?:0.0)).roundToThirdPlace(),
                             pause = 120,
                             trainingId = training.id))
                 }
@@ -115,7 +115,7 @@ class Beyond531Plancreator() :PlanCreator() {
     }
     private fun increaseWeightifNecessary(){
         if((cal.get(Calendar.WEEK_OF_YEAR) - startingWeek ) ==4)
-        UserProperities.instance.maxWeights.values.plus(2.5)
+        UserProperities.maxWeights.values.plus(2.5)
     }
 
 

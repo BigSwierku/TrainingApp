@@ -8,9 +8,14 @@
     <string name="military">Żołnierskie</string>
     <string name="max_weight">Ciężar</string>
     <string name="max_reps">Powtórzenia</string>
-    <string name="excercise">ćwiczenia</string>
-    <string name="adding_plan_desc">Wpisz poniżej ciężar i ilość powtórzeń</string>
+    <string name="excercise">Cwiczenia</string>
+    <string name="adding_plan_desc">Wpisz poniżej ciężar i liczbę powtórzeń</string>
     <string name="create_program">Utwórz program</string>
     <string name="check_existing">Wyświetl obecny plan</string>
     <string name="show_today">Pokaż dzisiejszy trening</string>
+    <string name="chest_weight">0</string>
+    <string name="military_weight">0</string>
+    <string name="squat_weight">0</string>
+    <string name="deadlift_weight">0</string>
+    <string name="max">1RM</string>
 </resources>

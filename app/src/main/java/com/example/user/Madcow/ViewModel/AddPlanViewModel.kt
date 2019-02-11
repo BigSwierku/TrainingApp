@@ -1,6 +1,7 @@
 package com.example.user.Madcow.ViewModel
 
 //import com.example.user.Madcow.MadCowPlanCreator
+import android.content.Context.MODE_PRIVATE
 import com.example.user.Madcow.PlanAPI
 import com.example.user.Madcow.UserProperities
 import io.reactivex.Flowable
@@ -16,10 +17,10 @@ class AddPlanViewModel @Inject constructor(private val planAPI: PlanAPI) {
 
     fun calcMax(reps:String, weight:String):Single<Double> {
 
-        return Single.just(weight.toDouble() / (1.0278 - 0.0278 * reps.toDouble()))
+        return Single.just(weight.toDouble() / (1.0278 - (0.0278 * reps.toDouble())))
     }
     fun setMaxes(maxes:Map<String,Double>){
-        UserProperities.instance.maxWeights = maxes}
+        UserProperities.maxWeights = maxes}
 
     fun generatePlan(planType:Int):Single<Boolean>{
       return   Single.fromCallable {

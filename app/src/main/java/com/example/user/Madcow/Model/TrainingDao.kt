@@ -4,7 +4,6 @@ import android.arch.persistence.room.*
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
-import org.intellij.lang.annotations.Flow
 import java.util.*
 
 /**
