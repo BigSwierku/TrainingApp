@@ -6,9 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-abstract  class ShowSeriesActivityModule {
-
-
+class ShowSeriesActivityModule {
 
     @Provides
     fun  provideSeriesViewModel(planApi: PlanAPI) = TimerViewModel(planApi)

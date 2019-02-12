@@ -13,10 +13,8 @@ import dagger.Provides
 
 //activity stuff - dagger2.10
 @Module
-abstract  class ShowWeeksActivityModule {
-
-
+class ShowWeeksActivityModule {
 
     @Provides
-     fun  provideWeeksViewModel(planApi: PlanAPI) = TrainingsViewModel(planApi)
+    fun  provideWeeksViewModel(planApi: PlanAPI) = TrainingsViewModel(planApi)
 }

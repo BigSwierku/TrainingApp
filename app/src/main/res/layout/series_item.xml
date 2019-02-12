@@ -10,8 +10,6 @@
         android:id="@+id/times"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
         android:text="@string/times"
         app:layout_constraintStart_toEndOf="@+id/reps_amount"
         app:layout_constraintTop_toTopOf="@+id/reps_amount" />
@@ -41,8 +39,6 @@
         android:id="@+id/weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/times"
         app:layout_constraintTop_toTopOf="@+id/times" />
@@ -53,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="@string/done_falg"
+        android:text="@string/done_flag"
         app:layout_constraintStart_toEndOf="@+id/weight"
         app:layout_constraintTop_toTopOf="@+id/weight" />
 

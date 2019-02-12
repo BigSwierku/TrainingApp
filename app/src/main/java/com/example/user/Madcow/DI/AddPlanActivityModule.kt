@@ -11,14 +11,8 @@ import javax.inject.Inject
  * Created by User on 2018-01-08.
  */
 @Module
-abstract class AddPlanActivityModule  {
+class AddPlanActivityModule  {
 
-    @Module
-    companion object {
-        @JvmStatic
         @Provides
         fun provideAddPlanViewModel(planApi: PlanAPI): AddPlanViewModel = AddPlanViewModel(planApi)
-    }
-
-
 }

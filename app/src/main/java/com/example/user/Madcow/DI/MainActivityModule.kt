@@ -6,13 +6,8 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-abstract class MainActivityModule {
+class MainActivityModule {
 
-
-    @Module
-    companion object {
-        @JvmStatic
-        @Provides
-        fun provideMainViewModel(planApi: PlanAPI) = MainViewModel(planApi)
-    }
+    @Provides
+    fun provideMainViewModel(planApi: PlanAPI) = MainViewModel(planApi)
 }

@@ -32,10 +32,11 @@
         android:id="@+id/series_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/excersice_name"
-        app:layout_constraintTop_toBottomOf="@+id/excersice_name" />
+        app:layout_constraintStart_toEndOf="@+id/series"
+        app:layout_constraintTop_toTopOf="@+id/series" />
 
     <TextView
         android:id="@+id/series"
@@ -44,7 +45,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:text="@string/series"
-        app:layout_constraintStart_toEndOf="@+id/series_amount"
-        app:layout_constraintTop_toTopOf="@+id/series_amount" />
+        app:layout_constraintBottom_toBottomOf="@+id/show_series_button"
+        app:layout_constraintStart_toEndOf="@+id/show_series_button" />
 
 </android.support.constraint.ConstraintLayout>

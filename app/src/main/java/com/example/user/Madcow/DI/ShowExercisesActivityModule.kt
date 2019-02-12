@@ -8,8 +8,6 @@ import dagger.Provides
 @Module
 abstract  class ShowExercisesActivityModule {
 
-
-
     @Provides
     fun  provideExercisesViewModel(planApi: PlanAPI) = SeriesViewModel(planApi)
 }

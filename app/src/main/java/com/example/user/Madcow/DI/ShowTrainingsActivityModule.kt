@@ -6,9 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-abstract  class ShowTrainingsActivityModule {
-
-
+class ShowTrainingsActivityModule {
 
     @Provides
     fun  provideTrainingsViewModel(planApi: PlanAPI) = ExercisesViewModel(planApi)
