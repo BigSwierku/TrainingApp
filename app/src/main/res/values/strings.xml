@@ -18,4 +18,10 @@
     <string name="squat_weight">0</string>
     <string name="deadlift_weight">0</string>
     <string name="max">1RM</string>
+    <string name="series">serii</string>
+    <string name="times">x</string>
+    <string name="done_flag">Not finished</string>
+    <string name="day">day</string>
+
+
 </resources>

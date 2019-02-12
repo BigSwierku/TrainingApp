@@ -6,45 +6,38 @@
     android:layout_height="wrap_content"
     tools:layout_editor_absoluteY="81dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+    <Button
+        android:id="@+id/show_week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/show_week"
-            android:layout_width="wrap_content"
-            android:layout_height="77dp"
-            android:layout_weight="1"
-            android:text="Button"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="0dp" />
+    <TextView
+        android:id="@+id/week_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/show_week"
+        app:layout_constraintTop_toTopOf="@+id/show_week" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/week_number"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:layout_weight="1"
-                android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/show_week"
-                tools:layout_editor_absoluteY="37dp" />
-
-            <TextView
-                android:id="@+id/week_dates"
-                android:layout_width="match_parent"
-                android:layout_height="39dp"
-                android:layout_weight="1"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="123dp"
-                tools:layout_editor_absoluteY="2dp" />
-        </LinearLayout>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/week_dates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_weight="1"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/show_week"
+        app:layout_constraintStart_toEndOf="@+id/show_week" />
 
 </android.support.constraint.ConstraintLayout>
